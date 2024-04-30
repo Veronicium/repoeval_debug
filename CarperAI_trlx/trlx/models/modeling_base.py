@@ -139,11 +139,16 @@ class PreTrainedModelWrapper(nn.Module, transformers.utils.PushToHubMixin):
         model = cls(base_model, **wrapped_model_kwargs)
 
         if isinstance(pretrained_model_name_or_path, str):
+            safets_filename = os.path.join(pretrained_model_name_or_path, "model.safetensors")
             filename = os.path.join(pretrained_model_name_or_path, "pytorch_model.bin")
             sharded_index_filename = os.path.join(pretrained_model_name_or_path, "pytorch_model.bin.index.json")
             is_sharded = False
+            
+            use_safetensors = False
+            if os.path.exists(safets_filename):
+                use_safetensors = True
 
-            if not os.path.exists(filename):
+            if not os.path.exists(filename) and not use_safetensors:
                 try:
                     filename = hf_hub_download(pretrained_model_name_or_path, "pytorch_model.bin")
                 # Sharded
@@ -174,6 +179,9 @@ class PreTrainedModelWrapper(nn.Module, transformers.utils.PushToHubMixin):
                     if not os.path.exists(filename):
                         filename = hf_hub_download(pretrained_model_name_or_path, shard_file)
                     state_dict.update(torch.load(filename, map_location="cpu"))
+            elif use_safetensors:
+                import safetensors
+                state_dict = safetensors.torch.load_file(safets_filename, device="cpu")
             else:
                 state_dict = torch.load(filename, map_location="cpu")
         else:
