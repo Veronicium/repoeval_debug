@@ -21,7 +21,7 @@ setup(
     extras_require={
         "test": [
             "matplotlib",
-            "scikit-learn",
+            "scikit-learn==1.2.2",
         ],
         "dev": [
             "black",
@@ -32,7 +32,7 @@ setup(
             "mypy",
             "pandas-stubs",
             "pyright",
-            "scikit-learn",
+            "scikit-learn==1.2.2",
             "tabulate",
         ],
     },
