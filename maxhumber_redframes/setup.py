@@ -17,11 +17,11 @@ setup(
     license="BSD 2",
     packages=find_packages(),
     python_requires=">=3.9",
-    install_requires=["pandas>=1.5,<2.0"],
+    install_requires=["pandas>=1.5,<2.0", "scikit-learn==1.2.2"],
     extras_require={
         "test": [
             "matplotlib",
-            "scikit-learn==1.2.2",
+            "scikit-learn",
         ],
         "dev": [
             "black",
@@ -32,7 +32,7 @@ setup(
             "mypy",
             "pandas-stubs",
             "pyright",
-            "scikit-learn==1.2.2",
+            "scikit-learn",
             "tabulate",
         ],
     },

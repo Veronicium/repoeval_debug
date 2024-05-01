@@ -21,9 +21,9 @@ matplotlib==3.6.1
 numpy>=1.23
 numpyro==0.13.1
 pandas>=1.1.5
-scipy
+scipy==1.12.0
 seaborn==0.11.1
 scikit-learn
 statsmodels>=0.13.0
 tensorflow>=2.7.2
-typing_extensions==4.6.1
+typing_extensions==4.11.1
