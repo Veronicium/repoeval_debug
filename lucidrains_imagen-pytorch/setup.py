@@ -26,7 +26,7 @@ setup(
     'denoising-diffusion'
   ],
   install_requires=[
-    'accelerate',
+    'accelerate==0.21.0',
     'beartype',
     'click',
     'datasets',
