@@ -22,6 +22,7 @@ setup(
         "test": [
             "matplotlib",
             "scikit-learn",
+            "protobuf==3.20.3",
         ],
         "dev": [
             "black",
